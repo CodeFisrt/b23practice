@@ -1,23 +1,23 @@
-import logo from './logo.svg';
+
 import './App.css';
+import User from './components/User';
+import Customer from './components/Customer'
+import Variable from './components/Variable';
+import StateDeclartion from './components/StateDeclartion';
+import Event from './components/Event';
+import StateWithObject from './components/StateWithObject';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Welcome B-23</h1>
+      <table style={{width:'100%'}}>
+        <tr>
+          <td>
+            <StateWithObject></StateWithObject>
+          </td>
+        </tr>
+      </table>
     </div>
   );
 }
