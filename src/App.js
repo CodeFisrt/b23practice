@@ -1,6 +1,6 @@
 
 import './App.css';
-import User from './components/User';
+ 
 import Customer from './components/Customer'
 import Variable from './components/Variable';
 import StateDeclartion from './components/StateDeclartion';
@@ -9,9 +9,12 @@ import StateWithObject from './components/StateWithObject';
 import StateWithArray from './components/StateWithArray';
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import DynamicClass from './components/DynamicClass';
+import Photos from './sampleApp/Photos';
+import User from './sampleApp/User';
+import Product from './sampleApp/Product';
 function App() {
   return (
-    <div className="App"> 
+    <div className=""> 
       <BrowserRouter> 
         <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
           <div className="container-fluid">
@@ -28,6 +31,15 @@ function App() {
               <li className="nav-item">
               <Link class="nav-link active" to="/Dynamic-class">Dynamic-class</Link> 
               </li> 
+              <li className="nav-item">
+              <Link class="nav-link active" to="/photos">Photos</Link> 
+              </li> 
+              <li className="nav-item">
+              <Link class="nav-link active" to="/user">user</Link> 
+              </li> 
+              <li className="nav-item">
+              <Link class="nav-link active" to="/Product">Product</Link> 
+              </li> 
             </ul>
           </div>
         </nav>
@@ -36,7 +48,10 @@ function App() {
           <Route path='/' element={<StateWithArray></StateWithArray>}></Route> 
           <Route path="/varibale" element={<Variable></Variable>}></Route>
           <Route path="/event" element={<Event></Event>}></Route>
+          <Route path="/photos" element={<Photos></Photos>}></Route>
           <Route path="/Dynamic-class" element={<DynamicClass></DynamicClass>}></Route>
+          <Route path="/user" element={<User></User>}></Route>
+          <Route path="/Product" element={<Product></Product>}></Route>
           <Route path="/state-declaration" element={<StateDeclartion></StateDeclartion>}></Route>
         </Routes>
       </BrowserRouter>

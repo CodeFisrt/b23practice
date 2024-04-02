@@ -2,9 +2,11 @@ import React from 'react';
 
 
 function Customer () {
+
+   
     return (
         <div>
-            <h1>Hi From Customer Component </h1>
+           <button className='btn btn-success'> get Photos</button>
         </div>  
     )
 }
