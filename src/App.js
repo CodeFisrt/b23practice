@@ -12,6 +12,7 @@ import DynamicClass from './components/DynamicClass';
 import Photos from './sampleApp/Photos';
 import User from './sampleApp/User';
 import Product from './sampleApp/Product';
+import Patient from './sampleApp/Patient';
 function App() {
   return (
     <div className=""> 
@@ -40,6 +41,9 @@ function App() {
               <li className="nav-item">
               <Link class="nav-link active" to="/Product">Product</Link> 
               </li> 
+              <li className="nav-item">
+              <Link class="nav-link active" to="/Patient">Patient</Link> 
+              </li> 
             </ul>
           </div>
         </nav>
@@ -52,6 +56,7 @@ function App() {
           <Route path="/Dynamic-class" element={<DynamicClass></DynamicClass>}></Route>
           <Route path="/user" element={<User></User>}></Route>
           <Route path="/Product" element={<Product></Product>}></Route>
+          <Route path="/Patient" element={<Patient></Patient>}></Route>
           <Route path="/state-declaration" element={<StateDeclartion></StateDeclartion>}></Route>
         </Routes>
       </BrowserRouter>
