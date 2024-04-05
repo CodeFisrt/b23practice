@@ -41,6 +41,14 @@ const Patient = () => {
         if(response.data.result == true) {
             alert('Patient Updated Success');
             getAllPatient();
+            setPatientObj({
+                "patientId": 0,
+                "name": "",
+                "mobileNo": "",
+                "city": "",
+                "age": 0,
+                "gender": ""
+              })
         } else {
             alert(response.data.message)
         }

@@ -1,51 +1,61 @@
-import React, { useState } from 'react';
-import axios  from 'axios';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const Product = () => {
     const [productList, setProductList] = useState([]);
-    const cityList = ["Pune","Solapur","Nagpur","Mumbai"];
+    const [categoryList, setcategoryList] = useState([]);
+    const cityList = ["Pune", "Solapur", "Nagpur", "Mumbai"];
+    const [productObj,setProduct]= useState({
+        "productId": 0,
+        "productSku": "",
+        "productName": "",
+        "productPrice": 0,
+        "productShortName": "",
+        "productDescription": "",
+        "createdDate": "2024-04-05T14:00:02.609Z",
+        "deliveryTimeSpan": "",
+        "categoryId": 0,
+        "productImageUrl": ""
+    })
+
+    useEffect(()=>{
+        getAllCategory();
+        getAllProducts();
+    }, [])
+    const getAllCategory = async () => {
+        
+        const result = await axios.get("https://freeapi.gerasim.in/api/BigBasket/GetAllCategory");
+        debugger;
+        setcategoryList(result.data.data)
+    }
+    const updateFormValue = (event, key) => {
+        setProduct((prevObj) => ({ ...prevObj, [key]: event.target.value }));
+    };
+     const onSaveProduct = async () => {
+        debugger;
+        const response =  await axios.post("https://freeapi.gerasim.in/api/BigBasket/CreateProduct",productObj);
+        debugger;
+        if(response.data.result == true) {
+            alert('Product Created Success');
+            getAllProducts();
+        } else {
+            alert(response.data.message)
+        }
+     }
 
     const getAllProducts = async () => {
-        const result =  await axios.get("https://freeapi.gerasim.in/api/BigBasket/GetAllProducts");
+        const result = await axios.get("https://freeapi.gerasim.in/api/BigBasket/GetAllProducts");
         debugger;
         setProductList(result.data.data)
     }
-    
+
     return (
         <div>
-            <button className='btn btn-success' onClick={getAllProducts}>Get All Products</button>
+             
             <div className='row'>
-                <div className='col-6'>
-                    <table className='table table-bordered'>
-                        <thead>
-                            <tr>
-                                <th>Image</th>
-                                <th>Sr No</th>
-                                <th>SKU Code</th>
-                                <th>Product Name</th>
-                                <th>Price</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                productList.map((prod,index)=>{
-                                    return(<tr>
-                                        <td>
-                                            <img src={prod.productImageUrl} style={{height:'100px'}} />
-                                        </td>
-                                        <td> {index +1}</td>
-                                        <td> {prod.productSku}</td>
-                                        <td> {prod.productName}</td>
-                                        <td> {prod.productPrice}</td>
-                                    </tr>)
-                                })
-                            }
-                            
-                        </tbody>
-                    </table>
-                </div>
-                <div className='col-6'>
-                    <div className='row'> 
+
+                <div className='col-8'>
+                    <div className='row'>
                         {
                             productList.map((product) => {
                                 return (<div className='col-4'>
@@ -58,11 +68,106 @@ const Product = () => {
                                     </div>
                                 </div>)
                             })
-                        } 
+                        }
                     </div>
                 </div>
+                <div className="col-4">
+                    <div className="card">
+                        <div className="card-header bg-primary">New Product</div>
+                        <div className="card-body">
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <label>Product Sku</label>
+                                    <input
+                                        type="text" onChange={(event) => { updateFormValue(event, 'productSku') }}
+                                        placeholder="Enter ProductSku"
+                                        className="form-control"
+                                    />
+                                </div>
+                                <div className="col-md-6">
+                                    <label>Product Name</label>
+                                    <input
+                                        type="text" onChange={(event) => { updateFormValue(event, 'productName') }}
+                                        placeholder="Enter Product Name"
+                                        className="form-control"
+                                    />
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <label>Price</label>
+                                    <input
+                                        type="text" onChange={(event) => { updateFormValue(event, 'productPrice') }}
+                                        placeholder="Enter Price"
+                                        className="form-control"
+                                    />
+                                </div>
+                                <div className="col-md-6">
+                                    <label>Short Name</label>
+                                    <input
+                                        type="text" onChange={(event) => { updateFormValue(event, 'productShortName') }}
+                                        placeholder="Enter Short name"
+                                        className="form-control"
+                                    />
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <label>Description</label>
+                                    <input
+                                        type="text" onChange={(event) => { updateFormValue(event, 'productDescription') }}
+                                        placeholder="Enter Description"
+                                        className="form-control"
+                                    />
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <label>Delivery Time Span</label>
+                                    <input
+                                        type="text" onChange={(event) => { updateFormValue(event, 'deliveryTimeSpan') }}
+                                        placeholder="Enter Delivery Time Span"
+                                        className="form-control"
+                                    />
+                                </div>
+                                <div className="col-md-6">
+                                    <label>Select Category</label>
+                                    <select class="form-select" onChange={(event) => { updateFormValue(event, 'categoryId') }}>
+                                        {
+                                        categoryList.map((item)=>{
+                                            return (<option value={item.categoryId}> {item.categoryName}</option>)
+                                        })
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-md-12">
+                                    <label>Image</label>
+                                    <input
+                                        type="text" onChange={(event) => { updateFormValue(event, 'productImageUrl') }}
+                                        placeholder="Enter Delivery Time Span"
+                                        className="form-control"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="row pt-3">
+                                <div className="col-6 text-center">
+                                    <button className="btn btn-secondary">Reset</button>
+                                </div>
+                                <div className="col-6 text-center">
+                                    <button className="btn btn-success"  onClick={onSaveProduct}>
+                                        Create Patient
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-            <div className='row'>
+            {/* <div className='row'>
                 <div className='col-3'>
                     <ul>
                         {
@@ -88,7 +193,7 @@ const Product = () => {
                         }
                     </select>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 };
