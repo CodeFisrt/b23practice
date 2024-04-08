@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import MyLI from '../resuableComponent/MyLI';
+import Alert from '../resuableComponent/Alert';
 
 const Product = () => {
     const [productList, setProductList] = useState([]);
@@ -49,9 +51,11 @@ const Product = () => {
         setProductList(result.data.data)
     }
 
+    const stateList  = ['Maharashtra','Punjab','Goa']
     return (
         <div>
-             
+             <Alert alertType="Success" className="alert-success" message="Welcome to Product Page"></Alert>
+             <MyLI arrayData={stateList} title="'HI From Product PAge'"></MyLI>
             <div className='row'>
 
                 <div className='col-8'>

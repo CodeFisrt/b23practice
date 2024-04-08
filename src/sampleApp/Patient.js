@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import MyLI  from "../resuableComponent/MyLI";
+import Alert from '../resuableComponent/Alert';
 
 const Patient = () => {
 
@@ -17,6 +19,7 @@ const Patient = () => {
         const result = await axios.get("https://freeapi.gerasim.in/api/HospitalAppointment/GetAllPatients");
         setPatientList(result.data.data)
     }
+    
     const createNewPatient =  async () => {
         debugger;
         const response =  await axios.post("https://freeapi.gerasim.in/api/HospitalAppointment/AddNewPatient",patientObj);
@@ -64,9 +67,17 @@ const Patient = () => {
         }
     }
 
+    const cityList = ['Pune','Nagpur','Mumbai']
     return (
         <div>
+            <Alert alertType="Danger" message="Check For Errors" backColor="red" className="alert-danger"></Alert>
+
             <button className='btn btn-sm btn-success' onClick={getAllPatient}>Get Patient</button>
+            <div className='row'>
+                <div className='col-3'>
+                    <MyLI arrayData = {cityList} batchStartDate="'23-march-23'" title="'Welcome b-23'"></MyLI>
+                </div>
+            </div>
             <div className='row'>
                 <div className='col-8'>
                     <div className='card'>
