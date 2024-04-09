@@ -13,6 +13,7 @@ import Photos from './sampleApp/Photos';
 import User from './sampleApp/User';
 import Product from './sampleApp/Product';
 import Patient from './sampleApp/Patient';
+import ConditionRendering from './components/ConditionRendering';
 function App() {
   return (
     <div className=""> 
@@ -44,6 +45,9 @@ function App() {
               <li className="nav-item">
               <Link class="nav-link active" to="/Patient">Patient</Link> 
               </li> 
+              <li className="nav-item">
+              <Link class="nav-link active" to="/condition-rendering">Condition-rendering</Link> 
+              </li> 
             </ul>
           </div>
         </nav>
@@ -52,6 +56,7 @@ function App() {
           <Route path='/' element={<StateWithArray></StateWithArray>}></Route> 
           <Route path="/varibale" element={<Variable></Variable>}></Route>
           <Route path="/event" element={<Event></Event>}></Route>
+          <Route path="/condition-rendering" element={<ConditionRendering></ConditionRendering>}></Route>
           <Route path="/photos" element={<Photos></Photos>}></Route>
           <Route path="/Dynamic-class" element={<DynamicClass></DynamicClass>}></Route>
           <Route path="/user" element={<User></User>}></Route>
