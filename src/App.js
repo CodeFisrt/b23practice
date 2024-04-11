@@ -14,6 +14,7 @@ import User from './sampleApp/User';
 import Product from './sampleApp/Product';
 import Patient from './sampleApp/Patient';
 import ConditionRendering from './components/ConditionRendering';
+import EditProduct from './sampleApp/EditProduct';
 function App() {
   return (
     <div className=""> 
@@ -61,6 +62,7 @@ function App() {
           <Route path="/Dynamic-class" element={<DynamicClass></DynamicClass>}></Route>
           <Route path="/user" element={<User></User>}></Route>
           <Route path="/Product" element={<Product></Product>}></Route>
+          <Route path="/editProduct/:productId" element={<EditProduct></EditProduct>}></Route>
           <Route path="/Patient" element={<Patient></Patient>}></Route>
           <Route path="/state-declaration" element={<StateDeclartion></StateDeclartion>}></Route>
         </Routes>

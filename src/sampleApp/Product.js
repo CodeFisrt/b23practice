@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import MyLI from '../resuableComponent/MyLI';
 import Alert from '../resuableComponent/Alert';
-
+import { useNavigate } from "react-router-dom";
 const Product = () => {
     const [productList, setProductList] = useState([]);
     const [categoryList, setcategoryList] = useState([]);
@@ -19,6 +19,7 @@ const Product = () => {
         "categoryId": 0,
         "productImageUrl": ""
     })
+    const history = useNavigate();
 
     useEffect(()=>{
         getAllCategory();
@@ -50,6 +51,10 @@ const Product = () => {
         debugger;
         setProductList(result.data.data)
     }
+    const onNavigateToEdit = (productId) => {
+        debugger;
+        history('/editProduct/'+productId)
+    }
 
     const stateList  = ['Maharashtra','Punjab','Goa']
     return (
@@ -68,6 +73,7 @@ const Product = () => {
                                         <div class="card-body">
                                             <h6 class="card-title">{product.productShortName}</h6>
                                             <p class="card-text">{product.categoryName}</p>
+                                            <button className='btn btn-primary' onClick={()=>{onNavigateToEdit(product.productId)}}>Edit</button>
                                         </div>
                                     </div>
                                 </div>)
