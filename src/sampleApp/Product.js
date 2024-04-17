@@ -60,7 +60,7 @@ const Product = () => {
     return (
         <div>
              <Alert alertType="Success" className="alert-success" message="Welcome to Product Page"></Alert>
-             <MyLI arrayData={stateList} title="'HI From Product PAge'"></MyLI>
+            
             <div className='row'>
 
                 <div className='col-8'>

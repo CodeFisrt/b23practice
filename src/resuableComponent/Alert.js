@@ -1,16 +1,14 @@
-import React from "react";
+import React, {memo} from "react";
 
 const Alert = (props) => {
+  console.log('Alert Component Loaded');
   return (
     <div>
-      {/* <div class={`alert ${props.className}`}>
-        <strong>{props.alertType}!</strong> {props.message}
-      </div> */}
-      <div class={`alert ${props.className}`} style={{'background-color':props.backColor}}>
+      <div class={`alert ${props.className}`}>
         <strong>{props.alertType}!</strong> {props.message}
       </div>
     </div>
   );
 };
 
-export default Alert;
+export default memo(Alert);

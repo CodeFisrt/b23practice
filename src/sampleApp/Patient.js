@@ -4,7 +4,7 @@ import MyLI  from "../resuableComponent/MyLI";
 import Alert from '../resuableComponent/Alert';
 
 const Patient = () => {
-
+    console.log("Patinet compo Rerender")
     const [patientList, setPatientList] = useState([]);
     const [patientObj, setPatientObj] = useState({
         "patientId": 0,
@@ -66,13 +66,16 @@ const Patient = () => {
             alert(response.data.message)
         }
     }
+    const [alertType, setAlertType] = useState("Danger");
+
 
     const cityList = ['Pune','Nagpur','Mumbai']
     return (
         <div>
-            <Alert alertType="Danger" message="Check For Errors" backColor="red" className="alert-danger"></Alert>
+            <Alert alertType={alertType} message="Check For Errors" className="alert-danger"></Alert>
 
             <button className='btn btn-sm btn-success' onClick={getAllPatient}>Get Patient</button>
+            <button className='btn btn-sm btn-success' onClick={()=>{setAlertType('Success')}}>Change Alert Type</button>
             <div className='row'>
                 <div className='col-3'>
                     <MyLI arrayData = {cityList} batchStartDate="'23-march-23'" title="'Welcome b-23'"></MyLI>
@@ -100,7 +103,7 @@ const Patient = () => {
                                 <tbody>
                                     {
                                         patientList.map((patient, index) => {
-                                            return (<tr>
+                                            return (<tr key={patient.patientId}>
                                                 <td> {index + 1}</td>
                                                 <td> {patient.name}</td>
                                                 <td>{patient.mobileNo}</td>
